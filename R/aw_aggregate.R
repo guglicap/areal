@@ -109,7 +109,7 @@ aw_aggregate <- function(.data, target, tid, interVar, newVar){
   # calculate total area
   .data %>%
     dplyr::group_by(!!tidQ) %>%
-    dplyr::summarize(!!newVarQN := base::sum(!!interVarQ)) -> sum
+    dplyr::summarize(!!newVarQN := base::sum(!!interVarQ, na.rm = TRUE)) -> sum
 
   # join to input data
   out <- dplyr::left_join(target, sum, by = tidQN)
